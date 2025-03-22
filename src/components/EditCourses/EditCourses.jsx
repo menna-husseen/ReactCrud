@@ -4,7 +4,6 @@ import { useGlobalContext } from "../../context/GlobalContext"
 
 export default function EditCourses() {
   const { courseId } = useParams()
-  const [id, setId] = useState("")
   const [Title, setTitle] = useState("")
   const [Description, setDescription] = useState("")
   const [Instructor, setInstructor] = useState("")
@@ -17,7 +16,6 @@ export default function EditCourses() {
   useEffect(() => {
     getCourseById(courseId)
       .then((data) => {
-        setId(data.id)
         setTitle(data.Title)
         setDescription(data.Description)
         setInstructor(data.Instructor)
@@ -28,7 +26,7 @@ export default function EditCourses() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const courseData = { id, Title, Description, Instructor, Duration }
+    const courseData = { Title, Description, Instructor, Duration }
 
     updateCourse(courseId, courseData)
       .then(() => {
@@ -48,18 +46,7 @@ export default function EditCourses() {
             <div>
               {error && <p className="text-danger">Error: {error}</p>}
               <form onSubmit={handleSubmit}>
-                <input
-                  name="id"
-                  type="text"
-                  placeholder="ID"
-                  className="form-control my-2"
-                  value={id}
-                  onChange={(e) => setId(e.target.value)}
-                  required
-                  onMouseDown={() => setValidation(true)}
-                />
-                {id.length === 0 && Validation && <span className="text-danger">please enter your id</span>}
-
+                
                 <input
                   name="Title"
                   type="text"

@@ -51,7 +51,7 @@ export default function CoursesTable() {
         <div className="shadow-lg rounded-3 p-4 text-center">
           <h2>Tech Courses</h2>
 
-          <div className="d-flex justify-content-between my-5">
+          <div className="search-container d-flex justify-content-between my-5">
             <input
               type="text"
               onKeyUp={searchFunc}
@@ -69,13 +69,14 @@ export default function CoursesTable() {
           ) : error ? (
             <p className="text-danger">Error: {error}</p>
           ) : (
-            <table className="table table-striped table-hover">
+            <div className="table-responsive">
+            <table className="table table-striped table-hover ">
               <thead className="table-light">
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
                   <th scope="col">Description</th>
-                  <th scope="col">Instructor Name</th>
+                  <th scope="col">Instructor</th>
                   <th scope="col">Duration</th>
                   <th scope="col">Edit</th>
                   <th scope="col">Delete</th>
@@ -103,7 +104,8 @@ export default function CoursesTable() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+              </div>
           )}
         </div>
       </div>
